@@ -1,0 +1,21 @@
+# Ambiente virtual
+venv/
+
+# Dados (muito pesados para o Git - 2.68 GB)
+data/
+
+# MLflow
+mlruns/
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Configurações de IDE
+.vscode/
+
+# Arquivos de modelo salvos (se ficarem muito grandes)
+*.pkl
