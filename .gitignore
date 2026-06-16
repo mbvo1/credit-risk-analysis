@@ -16,6 +16,3 @@ __pycache__/
 
 # Configurações de IDE
 .vscode/
-
-# Arquivos de modelo salvos (se ficarem muito grandes)
-*.pkl
