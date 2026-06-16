@@ -6,13 +6,11 @@
 > **Autor:** Marcelo Bresani Victor de Oliveira — [@mbvo1](https://github.com/mbvo1)  
 > **Google Sites:**https://sites.google.com/view/defaultlens/in%C3%ADcio
 
----
 
 ## Resumo
 
 Este projeto implementa e compara cinco algoritmos de classificação para predição de inadimplência em crédito pessoal, utilizando o dataset **Home Credit Default Risk** (Kaggle, 307.511 registros). O trabalho replica a metodologia de Yang et al. (2025) — usando os mesmos dados e métricas — permitindo comparação direta com resultados validados por pares. O modelo AdaBoost otimizado obteve o melhor equilíbrio entre detecção de inadimplentes (Recall 0,423) e desempenho geral (F1 0,237), sendo selecionado para produção. A análise exploratória identificou forte desbalanceamento de classes (8,07% de inadimplentes), anomalias nos dados e multicolinearidade entre features, decisões que orientaram todo o pipeline de pré-processamento.
 
----
 
 ## Motivação e Contribuição
 
@@ -24,7 +22,6 @@ Este trabalho contribui com:
 - Análise do trade-off precisão/recall entre os cinco modelos sob a ótica do negócio de crédito
 - Pipeline completo de MLOps: rastreamento com MLflow, dashboard interativo e containerização Docker
 
----
 
 ## Dataset e Benchmark
 
