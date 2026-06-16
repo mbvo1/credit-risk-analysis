@@ -4,7 +4,7 @@
 > **Disciplina:** Aprendizado de Máquina  
 > **Instituição:** CESAR School  
 > **Autor:** Marcelo Bresani Victor de Oliveira — [@mbvo1](https://github.com/mbvo1)  
-> **Google Sites:** [LINK DO GOOGLE SITES]
+> **Google Sites:**https://sites.google.com/view/defaultlens/in%C3%ADcio
 
 ---
 
