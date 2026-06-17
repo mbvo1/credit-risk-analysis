@@ -9,7 +9,7 @@
 
 ## Resumo
 
-Este projeto implementa e compara cinco algoritmos de classificação para predição de inadimplência em crédito pessoal, utilizando o dataset **Home Credit Default Risk** (Kaggle, 307.511 registros). O trabalho replica a metodologia de Yang et al. (2025) — usando os mesmos dados e métricas — permitindo comparação direta com resultados validados por pares. O modelo AdaBoost otimizado obteve o melhor equilíbrio entre detecção de inadimplentes (Recall 0,423) e desempenho geral (F1 0,237), sendo selecionado para produção. A análise exploratória identificou forte desbalanceamento de classes (8,07% de inadimplentes), anomalias nos dados e multicolinearidade entre features, decisões que orientaram todo o pipeline de pré-processamento.
+Este projeto implementa e compara cinco algoritmos de classificação para predição de inadimplência em crédito pessoal, utilizando o dataset **Home Credit Default Risk** (Kaggle, 307.511 registros). O trabalho replica a metodologia de Yang et al. (2025), usando os mesmos dados e métricas, permitindo comparação direta com resultados reportados na literatura. O modelo AdaBoost otimizado obteve o melhor equilíbrio entre detecção de inadimplentes (Recall 0,423) e desempenho geral (F1 0,237), sendo selecionado para produção. A análise exploratória identificou forte desbalanceamento de classes (8,07% de inadimplentes), anomalias nos dados e multicolinearidade entre features, decisões que orientaram todo o pipeline de pré-processamento.
 
 
 ## Motivação e Contribuição
@@ -30,7 +30,7 @@ Este trabalho contribui com:
 **Variável-alvo:** `TARGET` — 0 (adimplente) / 1 (inadimplente)  
 **Desbalanceamento:** 91,93% adimplentes vs. 8,07% inadimplentes
 
-**Paper benchmark (validado por pares):**
+**Paper benchmark:**
 > Yang et al. (2025). *Interpretable Credit Default Prediction with Ensemble Learning and SHAP*. arXiv:2505.20815.
 
 O benchmark foi escolhido por reportar resultados para exatamente os cinco modelos exigidos na disciplina (KNN, Árvore de Decisão, Random Forest, AdaBoost e MLP) com métricas diretamente comparáveis, permitindo validação rigorosa dos resultados.
