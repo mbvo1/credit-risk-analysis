@@ -172,30 +172,35 @@ with tab1:
                 icon="⚠️"
             )
         else:
-            # Montar vetor de features (137 colunas, preenchendo com 0 as não usadas)
-            entrada = np.zeros(139)
+            # Construir vetor de entrada pelo NOME das features (não por índice)
+            # Ponto de partida: média do treino para cada feature (valor neutro).
+            # Isso evita que features não preenchidas pelo usuário virem
+            # z-scores negativos extremos após a padronização.
+            feature_names = list(scaler.feature_names_in_)
+            entrada = pd.Series(scaler.mean_, index=feature_names)
 
-            # Mapear os campos que o usuário preencheu para os índices corretos
-            # (esses índices correspondem à ordem das colunas após o pré-processamento)
-            mapa_features = {
-                2:  ext_source_1,
-                3:  ext_source_2,
-                4:  ext_source_3,
-                5:  amt_income,
-                6:  amt_credit,
-                7:  amt_annuity,
-                8:  -days_birth * 365,         # converter para dias negativos
-                9:  -days_employed * 365,
-                10: 1 if code_gender == "Masculino" else 0,
-                11: 1 if flag_own_car == "Sim" else 0,
-                12: 1 if flag_own_realty == "Sim" else 0,
-                13: cnt_children,
-            }
-            for idx, val in mapa_features.items():
-                entrada[idx] = val
+            # Preencher os campos informados pelo usuário, sempre pelo nome exato
+            entrada['EXT_SOURCE_1']        = ext_source_1
+            entrada['EXT_SOURCE_2']        = ext_source_2
+            entrada['EXT_SOURCE_3']        = ext_source_3
+            entrada['AMT_INCOME_TOTAL']    = amt_income
+            entrada['AMT_CREDIT']          = amt_credit
+            entrada['AMT_ANNUITY']         = amt_annuity
+            entrada['DAYS_BIRTH']          = -days_birth * 365
+            entrada['DAYS_EMPLOYED']       = -days_employed * 365
+            entrada['CODE_GENDER']         = 1 if code_gender == "Masculino" else 0
+            entrada['FLAG_OWN_CAR']        = 1 if flag_own_car == "Sim" else 0
+            entrada['FLAG_OWN_REALTY']     = 1 if flag_own_realty == "Sim" else 0
+            entrada['CNT_CHILDREN']        = cnt_children
+            # Features de engenharia presentes no modelo de produção
+            entrada['IDADE_ANOS']          = days_birth
+            entrada['RAZAO_PARCELA_RENDA'] = amt_annuity / amt_income if amt_income > 0 else 0
+            entrada['FLAG_SEM_EMPREGO']    = 1 if days_employed == 0 else 0
 
-            # Padronizar e prever
-            entrada_scaled = scaler.transform(entrada.reshape(1, -1))
+            # Padronizar (na ordem exata das colunas do modelo) e prever
+            entrada_scaled = scaler.transform(
+                pd.DataFrame([entrada])[feature_names]
+            )
             prob = modelo.predict_proba(entrada_scaled)[0][1]
             risco_pct = prob * 100
 
